@@ -35,6 +35,12 @@ body {
   width: 100%;
 }
 
+@media screen and (max-width: 480px) {
+  .wrapper {
+    padding: 40px 16px;
+  }
+}
+
 .sectionTitle {
   margin: 0;
   font-size: 3.5rem;
@@ -74,15 +80,35 @@ body {
   gap: 30px;
 }
 
+@media screen and (max-width: 970px) {
+  .contact__form {
+    margin: 0 auto;
+  }
+}
+
 .contact__formItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+@media screen and (max-width: 970px) {
+  .contact__formItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 .contact__formItemLabel {
   font-size: 2rem;
   color: #8b7969;
+}
+
+@media screen and (max-width: 480px) {
+  .contact__formItemLabel {
+    font-size: 1.8rem;
+  }
 }
 
 .contact__formItemLabel--red {
@@ -107,6 +133,12 @@ body {
 
 .contact__formItem:first-child .contact__formItemDetails {
   gap: 45px;
+}
+
+@media screen and (max-width: 480px) {
+  .contact__formItem:first-child .contact__formItemDetails {
+    gap: 16px;
+  }
 }
 
 .contact__formItem:first-child .contact__formItemInput {
@@ -138,6 +170,12 @@ body {
   gap: 45px;
 }
 
+@media screen and (max-width: 480px) {
+  .contact__formItem:nth-child(2) .contact__formItemDetails {
+    gap: 16px;
+  }
+}
+
 .contact__formItemDetailsValue {
   display: flex;
   gap: 8px;
@@ -146,12 +184,24 @@ body {
   align-items: center;
 }
 
+@media screen and (max-width: 480px) {
+  .contact__formItemDetailsValue {
+    font-size: 1.6rem;
+  }
+}
+
 .contact__formItem:nth-child(3) .contact__formItemInput {
   width: 100%;
 }
 
 .contact__formItem:nth-child(4) .contact__formItemDetails {
   gap: 16px;
+}
+
+@media screen and (max-width: 480px) {
+  .contact__formItem:nth-child(4) .contact__formItemDetails {
+    gap: 8px;
+  }
 }
 
 .contact__formItem:nth-child(4) .contact__formItemInput {
@@ -171,12 +221,24 @@ body {
   gap: 55px;
 }
 
+@media screen and (max-width: 970px) {
+  .contact__formItem:nth-child(7) {
+    gap: 8px;
+  }
+}
+
 .contact__formItem:nth-child(7) .contact__formItemDetails {
   display: inline-block;
   position: relative;
   border: 1px solid #f4f4f4;
   vertical-align: middle;
   width: 330px;
+}
+
+@media screen and (max-width: 480px) {
+  .contact__formItem:nth-child(7) .contact__formItemDetails {
+    width: 100%;
+  }
 }
 
 .contact__formItem:nth-child(7) .contact__formItemDetails::before {
