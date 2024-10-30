@@ -88,9 +88,25 @@ body {
 .confirm__tableHeading {
   background-color: #baa899;
   color: #fff;
-  padding: 20px 62px;
+  padding: 20px 50px;
   text-align: left;
   min-width: 305px;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .confirm__tableHeading {
+    padding: 10px;
+    min-width: auto;
+    width: 30%;
+    font-size: 2.34375vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .confirm__tableHeading {
+    font-size: 3.3333333333333335vw;
+  }
 }
 
 .confirm__button {
@@ -102,7 +118,24 @@ body {
 
 .confirm__tableDetail {
   padding: 20px 47px;
+  font-size: 2rem;
 }
+
+@media screen and (max-width: 768px) {
+  .confirm__tableDetail {
+    padding: 20px;
+    width: 70%;
+    font-size: 2.34375vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .confirm__tableDetail {
+    font-size: 3.3333333333333335vw;
+    padding: 10px;
+  }
+}
+
 
 .confirm__submit {
   margin: 0;
