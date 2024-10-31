@@ -66,7 +66,7 @@
           <div class="contact__formItemDetails">
             <select class="contact__formItemSelect">
               <option value="">選択してください</option>
-              <option value="種類1">商品の交換について</option>
+              <option value="商品の交換について">商品の交換について</option>
               <option value="種類2">種類2</option>
               <option value="種類3">種類3</option>
             </select>

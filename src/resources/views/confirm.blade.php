@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="{{ asset('css/confirm.css') }}" />
 </head>
 <body>
-<header class="header">
+  <header class="header">
     <h1 class="header__title">FashionablyLate</h1>
   </header>
   <main>

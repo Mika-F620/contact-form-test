@@ -18,4 +18,8 @@ class ContactController extends Controller
     {
         return view('thanks');
     }
+    public function admin()
+    {
+        return view('admin');
+    }
 }
