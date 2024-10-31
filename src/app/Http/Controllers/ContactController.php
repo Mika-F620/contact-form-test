@@ -22,4 +22,8 @@ class ContactController extends Controller
     {
         return view('admin');
     }
+    public function register()
+    {
+        return view('register');
+    }
 }
