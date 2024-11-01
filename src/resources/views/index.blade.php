@@ -22,8 +22,8 @@
         <div class="contact__formItem">
           <label id="name" class="contact__formItemLabel">お名前<spna class="contact__formItemLabel--red">※</spna></label>
           <div class="contact__formItemDetails">
-            <input type="text" name="lastname" class="contact__formItemInput" for="name" placeholder="例: 山田">
-            <input type="text" name="firstname" class="contact__formItemInput" for="name" placeholder="例: 太郎">
+            <input type="text" name="last_name" class="contact__formItemInput" for="name" placeholder="例: 山田">
+            <input type="text" name="first_name" class="contact__formItemInput" for="name" placeholder="例: 太郎">
           </div>
         </div>
         <div class="contact__formItem">
@@ -43,11 +43,11 @@
         <div class="contact__formItem">
           <label id="tel" class="contact__formItemLabel">電話番号<spna class="contact__formItemLabel--red">※</spna></label>
           <div class="contact__formItemDetails">
-            <input type="tel" name="telfirst" class="contact__formItemInput" for="tel" placeholder="080">
+            <input type="tel" name="tell[]" class="contact__formItemInput" for="tel" placeholder="080">
             <p class="contact__formItemHyphen">-</p>
-            <input type="tel" name="telmiddle" class="contact__formItemInput" for="tel" placeholder="1234">
+            <input type="tel" name="tell[]" class="contact__formItemInput" for="tel" placeholder="1234">
             <p class="contact__formItemHyphen">-</p>
-            <input type="tel" name="tellast" class="contact__formItemInput" for="tel" placeholder="5678">
+            <input type="tel" name="tell[]" class="contact__formItemInput" for="tel" placeholder="5678">
           </div>
         </div>
         <div class="contact__formItem">
@@ -65,7 +65,7 @@
         <div class="contact__formItem">
           <label id="" class="contact__formItemLabel">お問い合わせの種類<spna class="contact__formItemLabel--red">※</spna></label>
           <div class="contact__formItemDetails">
-            <select name="kinds" class="contact__formItemSelect">
+            <select name="content" class="contact__formItemSelect">
               <option value="">選択してください</option>
               <option value="商品の交換について">商品の交換について</option>
               <option value="種類2">種類2</option>
@@ -76,7 +76,7 @@
         <div class="contact__formItem">
           <label id="content" class="contact__formItemLabel">お問い合わせ内容<spna class="contact__formItemLabel--red">※</spna></label>
           <div class="contact__formItemDetails">
-            <textarea class="contact__formItemTextarea" for="content" placeholder="お問い合わせ内容をご記載ください"></textarea>
+            <textarea name="detail" class="contact__formItemTextarea" for="content" placeholder="お問い合わせ内容をご記載ください"></textarea>
           </div>
         </div>
         <input type="button" class="contact__formItemBtnbg" value="確認画面">

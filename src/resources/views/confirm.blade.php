@@ -23,8 +23,8 @@
           <tr class="confirm__tableLine">
             <th class="confirm__tableHeading">お名前</th>
             <td class="confirm__tableDetail">
-              <input type="text" name="lastname" value="{{ $contact['lastname'] }}" readonly>
-              <input type="text" name="firstname" value="{{ $contact['firstname'] }}" readonly>
+              <input type="text" name="last_name" value="{{ $contact['last_name'] }}" readonly>
+              <input type="text" name="first_name" value="{{ $contact['first_name'] }}" readonly>
             </td>
           </tr>
           <tr class="confirm__tableLine">
@@ -38,9 +38,7 @@
           <tr class="confirm__tableLine">
             <th class="confirm__tableHeading">電話番号</th>
             <td class="confirm__tableDetail">
-              <input type="tel" name="telfirst" value="{{ $contact['telfirst'] }}" readonly>
-              <input type="tel" name="telmiddle" value="{{ $contact['telmiddle'] }}" readonly>
-              <input type="tel" name="tellast" value="{{ $contact['tellast'] }}" readonly>
+              <input type="tel" name="tell" value="{{ $contact['tell'] }}" readonly>
             </td>
           </tr>
           <tr class="confirm__tableLine">
@@ -53,11 +51,11 @@
           </tr>
           <tr class="confirm__tableLine">
             <th class="confirm__tableHeading">お問い合わせの種類</th>
-            <td class="confirm__tableDetail"><input type="text" name="kinds" value="{{ $contact['kinds'] }}" readonly></td>
+            <td class="confirm__tableDetail"><input type="text" name="content" value="{{ $contact['content'] }}" readonly></td>
           </tr>
           <tr class="confirm__tableLine">
             <th class="confirm__tableHeading">お問い合わせ内容</th>
-            <td class="confirm__tableDetail"><input type="text" name="content" value="{{ $contact['content'] }}" readonly></td>
+            <td class="confirm__tableDetail"><input type="text" name="detail" value="{{ $contact['detail'] }}" readonly></td>
           </tr>
         </table>
         <div class="confirm__button">
