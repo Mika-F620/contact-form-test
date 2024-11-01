@@ -29,9 +29,9 @@
         <div class="contact__formItem">
           <label id="gender" class="contact__formItemLabel">性別<spna class="contact__formItemLabel--red">※</spna></label>
           <div class="contact__formItemDetails">
-            <div class="contact__formItemDetailsValue"><input type="radio" class="contact__formItemRadio" name="gender">男性</div>
-            <div class="contact__formItemDetailsValue"><input type="radio" class="contact__formItemRadio" name="gender">女性</div>
-            <div class="contact__formItemDetailsValue"><input type="radio" class="contact__formItemRadio" name="gender">その他</div>
+            <div class="contact__formItemDetailsValue"><input type="radio" class="contact__formItemRadio" name="gender" value="男性">男性</div>
+            <div class="contact__formItemDetailsValue"><input type="radio" class="contact__formItemRadio" name="gender" value="女性">女性</div>
+            <div class="contact__formItemDetailsValue"><input type="radio" class="contact__formItemRadio" name="gender" value="その他">その他</div>
           </div>
         </div>
         <div class="contact__formItem">
@@ -79,7 +79,7 @@
             <textarea name="detail" class="contact__formItemTextarea" for="content" placeholder="お問い合わせ内容をご記載ください"></textarea>
           </div>
         </div>
-        <input type="button" class="contact__formItemBtnbg" value="確認画面">
+        <input type="submit" class="contact__formItemBtnbg" value="確認画面">
       </form>
     </section>
   </main>

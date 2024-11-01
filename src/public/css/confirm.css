@@ -73,6 +73,12 @@ body {
   font-family: "Inika";
 }
 
+.confirm__form {
+  display: flex;
+  flex-direction: column;
+  gap: 51px;
+}
+
 .confirm__table {
   border: 1px solid #e0efde;
 }
@@ -119,6 +125,7 @@ body {
 .confirm__tableDetail {
   padding: 20px 47px;
   font-size: 2rem;
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {
