@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 
 class ContactController extends Controller
 {
@@ -29,12 +31,14 @@ class ContactController extends Controller
     {
         return view('admin');
     }
-    public function register()
+    public function register(RegisterRequest $request)
     {
-        return view('register');
+        $contact = $request->only(['name', 'email', 'password']);
+        return view('register', ['contact' => $contact]);
     }
-    public function login()
+    public function login(LoginRequest $request)
     {
-        return view('login');
+        $contact = $request->only(['email', 'password']);
+        return view('login', ['contact' => $contact]);
     }
 }

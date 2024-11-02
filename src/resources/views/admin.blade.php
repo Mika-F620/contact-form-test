@@ -13,6 +13,12 @@
 <body>
   <header class="header">
     <h1 class="header__title">FashionablyLate</h1>
+    @if (Auth::check())
+    <form class="form" action="/logout" method="post">
+     @csrf
+<button class="header-nav__button">ログアウト</button>
+@endif
+</form>
   </header>
   <section class="admin wrapper">
     <h2 class="sectionTitle">Admin</h2>

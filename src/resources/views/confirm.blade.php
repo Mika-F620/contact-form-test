@@ -57,7 +57,7 @@
         </table>
         <div class="confirm__button">
           <button class="contact__formItemBtnbg confirm__submit" type="submit">送信</button>
-          <a class="confirm__fix" href="#">修正</a>
+          <a href="#" onclick="history.back();">修正</a>
         </div>
       </form>
     </section>
