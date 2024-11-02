@@ -15,6 +15,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
 });
 
+Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
+
 // Fortifyのデフォルトルートで登録・ログインページを表示
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::post('/register', [UserController::class, 'store'])->name('register.store');

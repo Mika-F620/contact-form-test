@@ -4,105 +4,116 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせフォーム</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+  <style>
+    /* モーダルのスタイル */
+    .modal {
+      display: none; /* 初期は非表示 */
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 500px;
+    }
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <header class="header">
     <h1 class="header__title">FashionablyLate</h1>
     @if (Auth::check())
     <form class="form" action="/logout" method="post">
-     @csrf
-<button class="header-nav__button">ログアウト</button>
-@endif
-</form>
+      @csrf
+      <button class="header-nav__button">ログアウト</button>
+    </form>
+    @endif
   </header>
   <section class="admin wrapper">
     <h2 class="sectionTitle">Admin</h2>
-    <div>
-      <input type="text">
-      <select>
-        <option>性別</option>
-        <option>男性</option>
-        <option>女性</option>
-        <option>その他</option>
-      </select>
-      <select>
-        <option>お問い合わせ</option>
-        <option>商品の交換について</option>
-        <option>種類2</option>
-        <option>種類3</option>
-      </select>
-      <input type="date">
-      <button class="contact__formItemBtnbg">検索</button>
-      <button class="contact__formItemBtnbg">リセット</button>
-    </div>
-    <div>
-      <button class="contact__formItemBtnbg">エクスポート</button>
-    </div>
+
+    <!-- 検索フィルターやテーブル -->
     <table>
       <tr>
         <th>お名前</th>
         <th>性別</th>
         <th>メールアドレス</th>
-        <th>>お問い合わせの種類</th>
+        <th>お問い合わせの種類</th>
       </tr>
+      @foreach ($contacts as $contact)
       <tr>
-        <td>山田　太郎</td>
-        <td>男性</td>
-        <td>test@example.com</td>
-        <td>商品の交換について<button class="contact__formItemBtnbg">詳細</button></td>
+        <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
+        <td>{{ $contact->gender }}</td>
+        <td>{{ $contact->email }}</td>
+        <td>
+          {{ $contact->category->content ?? 'なし' }}
+          <button onclick="openModal({{ $contact->id }})" class="contact__formItemBtnbg">詳細</button>
+        </td>
       </tr>
-      <tr>
-        <td>山田　太郎</td>
-        <td>男性</td>
-        <td>test@example.com</td>
-        <td>商品の交換について<button class="contact__formItemBtnbg">詳細</button></td>
-      </tr>
+      @endforeach
     </table>
 
-    <div>
-      <table>
-        <tr>
-          <th>お名前</th>
-          <td>山田　太郎</td>
-        </tr>
-        <tr>
-          <th>性別</th>
-          <td>男性</td>
-        </tr>
-        <tr>
-          <th>メールアドレス</th>
-          <td>test@example.com</td>
-        </tr>
-        <tr>
-          <th>電話番号</th>
-          <td>08012345678</td>
-        </tr>
-        <tr>
-          <th>住所</th>
-          <td>東京都渋谷区</td>
-        </tr>
-        <tr>
-          <th>建物名</th>
-          <td>マンション</td>
-        </tr>
-        <tr>
-          <th>お問い合わせの種類</th>
-          <td>商品の交換について</td>
-        </tr>
-        <tr>
-          <th>お問い合わせ内容</th>
-          <td>テスト</td>
-        </tr>
-      </table>
-      <button class="contact__formItemBtnbg" type="button">削除</button>
+    <!-- モーダルウィンドウ -->
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>お問い合わせ詳細</h3>
+        <table>
+          <tr><th>お名前</th><td id="modal-name"></td></tr>
+          <tr><th>性別</th><td id="modal-gender"></td></tr>
+          <tr><th>メールアドレス</th><td id="modal-email"></td></tr>
+          <tr><th>電話番号</th><td id="modal-tell"></td></tr>
+          <tr><th>住所</th><td id="modal-address"></td></tr>
+          <tr><th>建物名</th><td id="modal-building"></td></tr>
+          <tr><th>お問い合わせの種類</th><td id="modal-category"></td></tr>
+          <tr><th>お問い合わせ内容</th><td id="modal-detail"></td></tr>
+        </table>
+        <button class="contact__formItemBtnbg" type="button">削除</button>
+      </div>
     </div>
   </section>
-  <main>
-  </main>
+
+  <script>
+    // モーダルを開く関数
+    function openModal(contactId) {
+      const modal = document.getElementById("contactModal");
+
+      fetch(`/contacts/${contactId}`)
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("modal-name").textContent = data.last_name + ' ' + data.first_name;
+          document.getElementById("modal-gender").textContent = data.gender;
+          document.getElementById("modal-email").textContent = data.email;
+          document.getElementById("modal-tell").textContent = data.tell;
+          document.getElementById("modal-address").textContent = data.address;
+          document.getElementById("modal-building").textContent = data.building;
+          document.getElementById("modal-category").textContent = data.category.content ?? 'なし';
+          document.getElementById("modal-detail").textContent = data.detail;
+
+          modal.style.display = "block";
+        });
+    }
+
+    // モーダルを閉じる関数
+    function closeModal() {
+      document.getElementById("contactModal").style.display = "none";
+    }
+  </script>
 </body>
 </html>
