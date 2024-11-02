@@ -6,56 +6,6 @@
   <title>お問い合わせフォーム</title>
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
-  <style>
-    /* モーダルのスタイル */
-    .modal {
-      display: none; /* 初期は非表示 */
-      position: fixed;
-      z-index: 1;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-    }
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-    }
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .pagination-links {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.pagination-links nav {
-    display: inline-block;
-}
-
-.pagination-links .page-link {
-    padding: 8px 12px;
-    margin: 0 4px;
-    background-color: #f2f2f2;
-    border-radius: 4px;
-    text-decoration: none;
-}
-
-.pagination-links .page-link:hover {
-    background-color: #ddd;
-}
-  </style>
 </head>
 <body>
   <header class="header">
@@ -70,75 +20,75 @@
   <section class="admin wrapper">
     <h2 class="sectionTitle">Admin</h2>
 
-    <form action="{{ route('admin.search') }}" method="POST">
+    <form class="admin__searchForm" action="{{ route('admin.search') }}" method="POST">
     @csrf
-    <input type="text" name="query" placeholder="名前またはメールアドレスで検索">
-
-    <select name="gender">
-        <option value="" selected>性別</option>
-        <option value="全て">全て</option>
-        <option value="男性">男性</option>
-        <option value="女性">女性</option>
-        <option value="その他">その他</option>
-    </select>
-
-    <select name="category_id">
+    <input class="admin__searchInput" type="text" name="query" placeholder="名前またはメールアドレスで検索">
+    <div class="admin__searchDropdown">
+      <select class="admin__searchSelect" name="gender">
+          <option value="" selected>性別</option>
+          <option value="全て">全て</option>
+          <option value="男性">男性</option>
+          <option value="女性">女性</option>
+          <option value="その他">その他</option>
+      </select>
+    </div>
+    <div class="admin__searchDropdown">
+    <select class="admin__searchSelect" name="category_id">
         <option value="">お問い合わせの種類</option>
         @foreach($categories as $category)
             <option value="{{ $category->id }}">{{ $category->content }}</option>
         @endforeach
     </select>
+</div>
+    <input class="admin__searchInput" type="date" name="date" placeholder="日付で検索">
 
-    <input type="date" name="date" placeholder="日付で検索">
-
-    <button type="submit">検索</button>
+    <button class="contact__formItemBtnbg admin__searchBtn" type="submit">検索</button>
     
     <!-- リセットボタン -->
-    <button type="button" onclick="window.location='{{ route('admin.dashboard') }}'">リセット</button>
+    <button class="admin__searchReset" type="button" onclick="window.location='{{ route('admin.dashboard') }}'">リセット</button>
 </form>
 
 <!-- ページネーションリンク -->
-<div class="pagination-links">
+<div class="admin__searchPagination">
     {{ $contacts->links() }}
 </div>
 
     <!-- 検索フィルターやテーブル -->
-    <table>
+    <table class="admin__table">
       <tr>
-        <th>お名前</th>
-        <th>性別</th>
-        <th>メールアドレス</th>
-        <th>お問い合わせの種類</th>
+        <th class="admin__tableHeading">お名前</th>
+        <th class="admin__tableHeading">性別</th>
+        <th class="admin__tableHeading">メールアドレス</th>
+        <th class="admin__tableHeading">お問い合わせの種類</th>
       </tr>
       @foreach ($contacts as $contact)
       <tr>
-        <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
-        <td>{{ $contact->gender }}</td>
-        <td>{{ $contact->email }}</td>
-        <td>
+        <td class="admin__tableDetails">{{ $contact->last_name }} {{ $contact->first_name }}</td>
+        <td class="admin__tableDetails">{{ $contact->gender }}</td>
+        <td class="admin__tableDetails">{{ $contact->email }}</td>
+        <td class="admin__tableDetails">
           {{ $contact->category->content ?? 'なし' }}
-          <button onclick="openModal({{ $contact->id }})" class="contact__formItemBtnbg">詳細</button>
+          <button onclick="openModal({{ $contact->id }})" class="admin__tableBtn">詳細</button>
         </td>
       </tr>
       @endforeach
     </table>
 
     <!-- モーダルウィンドウ -->
-    <div id="contactModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h3>お問い合わせ詳細</h3>
-        <table>
-          <tr><th>お名前</th><td id="modal-name"></td></tr>
-          <tr><th>性別</th><td id="modal-gender"></td></tr>
-          <tr><th>メールアドレス</th><td id="modal-email"></td></tr>
-          <tr><th>電話番号</th><td id="modal-tell"></td></tr>
-          <tr><th>住所</th><td id="modal-address"></td></tr>
-          <tr><th>建物名</th><td id="modal-building"></td></tr>
-          <tr><th>お問い合わせの種類</th><td id="modal-category"></td></tr>
-          <tr><th>お問い合わせ内容</th><td id="modal-detail"></td></tr>
+    <div id="contactModal" class="admin__modal">
+      <div class="adminModal__contents">
+        <span class="adminModal__close" onclick="closeModal()">&times;</span>
+        <table class="adminModal__table">
+          <tr><th class="adminModal__tableHeading">お名前</th><td class="adminModal__tableDetails" id="modal-name"></td></tr>
+          <tr><th class="adminModal__tableHeading">性別</th><td class="adminModal__tableDetails" id="modal-gender"></td></tr>
+          <tr><th class="adminModal__tableHeading">メールアドレス</th><td class="adminModal__tableDetails" id="modal-email"></td></tr>
+          <tr><th class="adminModal__tableHeading">電話番号</th><td class="adminModal__tableDetails" id="modal-tell"></td></tr>
+          <tr><th class="adminModal__tableHeading">住所</th><td class="adminModal__tableDetails" id="modal-address"></td></tr>
+          <tr><th class="adminModal__tableHeading">建物名</th><td class="adminModal__tableDetails" id="modal-building"></td></tr>
+          <tr><th class="adminModal__tableHeading">お問い合わせの種類</th><td class="adminModal__tableDetails" id="modal-category"></td></tr>
+          <tr><th class="adminModal__tableHeading">お問い合わせ内容</th><td class="adminModal__tableDetails" id="modal-detail"></td></tr>
         </table>
-        <button class="contact__formItemBtnbg" type="button" onclick="deleteContact()">削除</button>
+        <button class="adminModal__tableBtn" type="button" onclick="deleteContact()">削除</button>
       </div>
     </div>
   </section>

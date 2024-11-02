@@ -15,7 +15,7 @@
     <section class="thanks">
       <div class="thanks__contents">
         <h2 class="thanks__title">お問い合わせありがとうございました</h2>
-        <button class="contact__formItemBtnbg">HOME</button>
+        <button class="contact__formItemBtnbg" onclick="location.href='{{ route('home') }}'">HOME</button>
       </div>
     </section>
   </main>

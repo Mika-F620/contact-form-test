@@ -104,3 +104,240 @@ body {
   gap: 29px;
   font-family: "Inika";
 }
+
+.admin__searchForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin__searchInput {
+  height: 38px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border: none;
+  color: #beb1a6;
+  font-size: 1.4rem;
+}
+
+.admin__searchDropdown {
+  display: inline-block;
+  position: relative;
+  border: 1px solid #f4f4f4;
+  vertical-align: middle;
+  width: auto;
+}
+
+.admin__searchDropdown::before {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 21px;
+  width: 0;
+  height: 0;
+  border-width: 20px 15px 0 15px;
+  border-style: solid;
+  border-color: #beb1a6 transparent transparent transparent;
+  content: "";
+  pointer-events: none;
+}
+
+.admin__searchSelect {
+  appearance: none;
+  padding: 10px;
+  padding-right: 50px;
+  border: none;
+  outline: 0;
+  background: #f4f4f4;
+  background-image: none;
+  box-shadow: none;
+  text-indent: 0.01px;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  width: 100%;
+  color: #beb1a6;
+}
+
+.admin__searchBtn {
+  margin: 0;
+}
+
+.admin__searchReset {
+  border: 1px solid #d9c6b5;
+  font-size: 2rem;
+  padding: 10px 40px;
+  width: fit-content;
+  margin: 0;
+  cursor: pointer;
+  transition: all .3s;
+  background-color: #d9c6b5;
+  color: #fff;
+}
+
+.admin__searchReset:hover {
+  opacity: 0.8;
+}
+
+.flex.justify-between.flex-1 {
+  display: none;
+}
+
+.text-sm.text-gray-700.leading-5:first-of-type {
+  display: none;
+}
+
+/* ページネーションのリンク全体をカスタマイズ */
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md {
+  display: flex; /* inline-flexに変更して幅を調整 */
+  justify-content: flex-end;
+  border: 1px solid #e0dfde;
+  width: fit-content;
+  border-radius: 4px;
+  margin-left: auto;
+
+}
+
+/* ページネーション内の矢印やページ番号のスタイル */
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md a,
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md span {
+  width: 30px; /* 横幅 */
+  height: 30px; /* 縦幅 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md a {
+  color: #8b7969;
+  border-right: 1px solid #e0dfde;
+}
+
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md a:last-of-type {
+  border-right: none;
+}
+
+/* 矢印やページリンクのホバー時のスタイル */
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md a:hover {
+  background-color: #f0f0f0; /* 背景色 */
+  color: #000; /* ホバー時のテキスト色 */
+}
+
+/* 現在のページ番号のスタイル */
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md span[aria-current="page"] {
+  background-color: #8b7969; /* お好みの背景色 */
+  color: #fff!important; /* テキスト色 */
+}
+
+/* 他のページリンクのホバー時のスタイル */
+.admin__searchPagination .relative.z-0.inline-flex.shadow-sm.rounded-md a:hover {
+  background-color: #8b7969; /* ホバー背景色 */
+  color: #fff; /* ホバーテキスト色 */
+}
+
+.admin__tableHeading {
+  background-color: #8b7969;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 18px 0;
+  line-height: 1;
+}
+
+.admin__tableDetails {
+  color: #8b7969;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1;
+  padding: 24px 10px;
+  border-bottom: 1px solid #e0dfde;
+}
+
+.admin__tableDetails:first-of-type {
+  border-left: 1px solid #e0dfde;
+  padding-left: 57px;
+}
+
+.admin__tableDetails:last-of-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-right: 1px solid #e0dfde;
+  padding-right: 57px;
+}
+
+.admin__tableBtn {
+  color: #d9c6b5;
+  font-size: 1.8rem;
+  padding: 4px 15px;
+  transition: all .3s;
+  cursor: pointer;
+}
+
+.admin__tableBtn:hover {
+  opacity: 0.8;
+}
+
+/* モーダルのスタイル */
+.admin__modal {
+  display: none; /* 初期は非表示 */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.adminModal__contents {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 29px 40px;
+  border: 1px solid #8b7969;
+  width: 100%;
+  max-width: 805px;
+}
+.adminModal__close {
+  color: #8b7969;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 400;
+  cursor: pointer;
+  border: 1px solid #8b7969;
+  border-radius: 50%;
+  display: block;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  line-height: 1;
+}
+
+.adminModal__table {
+  margin: 79px 67px;
+}
+
+.adminModal__tableHeading {
+  text-align: left;
+  font-size: 2rem;
+  color: #8b7969;
+  font-weight: 700;
+  width: 40%;
+  padding-bottom: 35px;
+}
+
+.adminModal__tableDetails {
+  color: #8b7969;
+  font-size: 2rem;
+  font-weight: 400;
+  width: 60%;
+  padding-bottom: 35px;
+}
+
+.adminModal__tableBtn {
+  background-color: #ba370d;
+  color: #fff;
+  font-size: 1.8rem;
+  padding: 8px 20px;
+  display: block;
+  margin: auto;
+}
