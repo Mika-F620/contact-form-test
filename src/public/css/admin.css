@@ -18,6 +18,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  padding: 0 40px;
 }
 
 .header__title {
@@ -26,6 +28,34 @@ body {
   font-size: 4rem;
   font-weight: 400;
   color: #8b7969;
+}
+
+.header__loginLink {
+  position: absolute;
+  right: 96px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(240, 240, 240, 0.6);
+  opacity: 0.6;
+  border: 1px solid #d9c6b5;
+}
+
+@media screen and (max-width: 768px) {
+  .header__loginLink {
+    right: 40px;
+  }
+}
+
+.header__loginBtn {
+  text-decoration: none;
+  color: #d9c6b5;
+  font-size: 2rem;
+  padding: 4px 15px;
+  transition: all .3s;
+}
+
+.header__loginBtn:hover {
+  opacity: 0.8;
 }
 
 .wrapper {

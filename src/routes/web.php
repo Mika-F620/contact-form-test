@@ -10,6 +10,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 // トップページ（アクセス自由）
 Route::get('/', [ContactController::class, 'index'])->name('home');
 
+Route::post('/admin/search', [AdminController::class, 'search'])->name('admin.search');
 // 認証ユーザー専用の管理ページ（ログイン後にのみアクセス可能）
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');

@@ -33,20 +33,74 @@
       font-weight: bold;
       cursor: pointer;
     }
+
+    .pagination-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-links nav {
+    display: inline-block;
+}
+
+.pagination-links .page-link {
+    padding: 8px 12px;
+    margin: 0 4px;
+    background-color: #f2f2f2;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.pagination-links .page-link:hover {
+    background-color: #ddd;
+}
   </style>
 </head>
 <body>
   <header class="header">
     <h1 class="header__title">FashionablyLate</h1>
     @if (Auth::check())
-    <form class="form" action="/logout" method="post">
+    <form class="header__loginLink" action="/logout" method="post">
       @csrf
-      <button class="header-nav__button">ログアウト</button>
+      <button class="header__loginBtn">logout</button>
     </form>
     @endif
   </header>
   <section class="admin wrapper">
     <h2 class="sectionTitle">Admin</h2>
+
+    <form action="{{ route('admin.search') }}" method="POST">
+    @csrf
+    <input type="text" name="query" placeholder="名前またはメールアドレスで検索">
+
+    <select name="gender">
+        <option value="" selected>性別</option>
+        <option value="全て">全て</option>
+        <option value="男性">男性</option>
+        <option value="女性">女性</option>
+        <option value="その他">その他</option>
+    </select>
+
+    <select name="category_id">
+        <option value="">お問い合わせの種類</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->content }}</option>
+        @endforeach
+    </select>
+
+    <input type="date" name="date" placeholder="日付で検索">
+
+    <button type="submit">検索</button>
+    
+    <!-- リセットボタン -->
+    <button type="button" onclick="window.location='{{ route('admin.dashboard') }}'">リセット</button>
+</form>
+
+<!-- ページネーションリンク -->
+<div class="pagination-links">
+    {{ $contacts->links() }}
+</div>
 
     <!-- 検索フィルターやテーブル -->
     <table>
