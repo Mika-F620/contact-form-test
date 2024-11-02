@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/contacts/{id}', [ContactController::class, 'show'])->name('contacts.show');
+Route::delete('/contacts/{id}', [AdminController::class, 'destroy'])->name('contacts.destroy');
 
 // Fortifyのデフォルトルートで登録・ログインページを表示
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');

@@ -138,7 +138,7 @@
           <tr><th>お問い合わせの種類</th><td id="modal-category"></td></tr>
           <tr><th>お問い合わせ内容</th><td id="modal-detail"></td></tr>
         </table>
-        <button class="contact__formItemBtnbg" type="button">削除</button>
+        <button class="contact__formItemBtnbg" type="button" onclick="deleteContact()">削除</button>
       </div>
     </div>
   </section>
@@ -168,6 +168,55 @@
     function closeModal() {
       document.getElementById("contactModal").style.display = "none";
     }
+
+    let selectedContactId;
+
+function openModal(contactId) {
+    const modal = document.getElementById("contactModal");
+    selectedContactId = contactId; // モーダルを開く時にIDを保存
+
+    fetch(`/contacts/${contactId}`)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("modal-name").textContent = data.last_name + ' ' + data.first_name;
+            document.getElementById("modal-gender").textContent = data.gender;
+            document.getElementById("modal-email").textContent = data.email;
+            document.getElementById("modal-tell").textContent = data.tell;
+            document.getElementById("modal-address").textContent = data.address;
+            document.getElementById("modal-building").textContent = data.building;
+            document.getElementById("modal-category").textContent = data.category.content ?? 'なし';
+            document.getElementById("modal-detail").textContent = data.detail;
+
+            modal.style.display = "block";
+        });
+}
+
+// 削除を実行する関数
+function deleteContact() {
+    if (!confirm('このデータを削除してもよろしいですか？')) return;
+
+    fetch(`/contacts/${selectedContactId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('削除しました。');
+            closeModal();
+            location.reload();  // ページをリロードして削除を反映
+        } else {
+            alert('削除に失敗しました。');
+        }
+    });
+}
+
+function closeModal() {
+    document.getElementById("contactModal").style.display = "none";
+}
+
   </script>
 </body>
 </html>
