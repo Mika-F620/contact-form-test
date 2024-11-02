@@ -17,7 +17,7 @@
   <main>
     <section class="contact wrapper">
       <h2 class="sectionTitle">Contact</h2>
-      <form class="contact__form" action="/confirm" method="post">
+      <form class="contact__form" action="{{ route('confirm.post') }}" method="post">
         @csrf
         <div class="contact__formItem">
           <label id="name" class="contact__formItemLabel">お名前<spna class="contact__formItemLabel--red">※</spna></label>
@@ -65,11 +65,10 @@
         <div class="contact__formItem">
           <label id="" class="contact__formItemLabel">お問い合わせの種類<spna class="contact__formItemLabel--red">※</spna></label>
           <div class="contact__formItemDetails">
-            <select name="content" class="contact__formItemSelect">
-              <option value="">選択してください</option>
-              <option value="商品の交換について">商品の交換について</option>
-              <option value="種類2">種類2</option>
-              <option value="種類3">種類3</option>
+            <select name="category_id" class="contact__formItemSelect">
+            @foreach ($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->content }}</option>
+    @endforeach
             </select>
           </div>
         </div>

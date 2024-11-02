@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact; // Contactモデルのインポート
+use App\Models\Category;  // Categoryモデルをインポート
 use App\Http\Requests\ContactRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\RegisterRequest;
@@ -11,22 +12,42 @@ use App\Http\Requests\LoginRequest;
 
 class ContactController extends Controller
 {
-    public function index(ContactRequest $request)
-    {
-        return view('index');
-    }
     public function confirm(Request $request)
     {
-        $contact = $request->only(['last_name', 'first_name', 'gender', 'email', 'tell', 'address', 'building', 'content', 'detail']);
-        // tellの配列をハイフンで結合して文字列化
+        $contact = $request->only([
+            'last_name', 'first_name', 'gender', 'email', 'tell', 
+            'address', 'building', 'category_id', 'detail'
+        ]);
+    
         $contact['tell'] = implode('-', $request->input('tell', []));
+    
+        // 選択されたcategory_idからカテゴリ内容を取得し、contact配列に保存
+        $contact['category'] = Category::find($contact['category_id'])->content ?? 'なし';
+    
+        // セッションにcontactデータを保存
+        $request->session()->put('contact', $contact);
+    
         return view('confirm', compact('contact'));
     }
     public function thanks(Request $request)
     {
-        $contact = $request->only(['last_name', 'first_name', 'gender', 'email', 'tell', 'address', 'building', 'content', 'detail']);
-        // tellの配列をハイフンで結合して文字列化
-        $contact['tell'] = implode('-', $request->input('tell', []));
+        // セッションからデータを取得
+    $contactData = $request->session()->get('contact');
+
+    // Contactインスタンスを作成してデータを保存
+    $contact = new Contact;
+    $contact->last_name = $contactData['last_name'];
+    $contact->first_name = $contactData['first_name'];
+    $contact->gender = $contactData['gender'];
+    $contact->email = $contactData['email'];
+    $contact->tell = $contactData['tell'];
+    $contact->address = $contactData['address'];
+    $contact->building = $contactData['building'];
+    $contact->category_id = $contactData['category_id'];  // category_idを保存
+    $contact->detail = $contactData['detail'];    // お問い合わせ内容
+    $contact->save();
+
+    return view('thanks');
     }
     public function admin()
     {
@@ -41,6 +62,14 @@ class ContactController extends Controller
     {
         $contact = $request->only(['email', 'password']);
         return view('login', ['contact' => $contact]);
+    }
+    public function index(Request $request)
+    {
+        // Categoryモデルから全てのカテゴリーを取得
+        $categories = Category::all();
+
+        // 取得したカテゴリーデータをビューに渡す
+        return view('index', compact('categories'));
     }
     public function show($id)
 {
