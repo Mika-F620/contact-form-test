@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>お問い合わせフォーム</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
-</head>
-<body>
-  <header class="header">
-    <h1 class="header__title">FashionablyLate</h1>
-  </header>
-  <main>
+@extends('layouts.app')
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
+@section('content')
     <section class="contact wrapper">
       <h2 class="sectionTitle">Contact</h2>
       <form class="contact__form" action="{{ route('confirm.post') }}" method="post">
@@ -106,6 +94,4 @@
         <input type="submit" class="contact__formItemBtnbg" value="確認画面">
       </form>
     </section>
-  </main>
-</body>
-</html>
+@endsection
