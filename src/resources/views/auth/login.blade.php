@@ -30,7 +30,7 @@
             <input class="login__input" type="email" name="email" class="" for="email" placeholder="例: test@example.com">
             <div class="form__error">
               @error('email')
-              {{ $message }}
+              <p class="form__error">{{ $message }}</p>
               @enderror
             </div>
           </div>
@@ -39,7 +39,7 @@
             <input class="login__input" type="password" name="password" class="" for="pass" placeholder="例: coachtech1106">
             <div class="form__error">
               @error('password')
-              {{ $message }}
+              <p class="form__error">{{ $message }}</p>
               @enderror
             </div>
           </div>

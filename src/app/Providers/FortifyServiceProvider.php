@@ -25,7 +25,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::registerView(fn() => view('auth.register'));
         Fortify::loginView(fn() => view('auth.login'));
 
-        Fortify::authenticateUsing(function (Request $request) {
+        Fortify::authenticateUsing(function (LoginRequest $request) {
             // LoginRequestのバリデーションルールを適用
             $validator = Validator::make($request->only(['email', 'password']), (new LoginRequest())->rules(), (new LoginRequest())->messages());
             $validator->validate();

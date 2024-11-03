@@ -65,6 +65,15 @@ body {
   opacity: 0.8;
 }
 
+.form__error {
+  color: #ff0000;
+  margin: 0;
+}
+
+.form__errorRight {
+  text-align: right;
+}
+
 
 
 
