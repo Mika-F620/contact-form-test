@@ -28,7 +28,7 @@
             <input class="register__input" type="text" name="name" class="" for="name" placeholder="例: 山田　太郎" value="{{ old('name') }}">
             <div class="form__error">
               @error('name')
-              {{ $message }}
+              <p class="form__error">{{ $message }}</p>
               @enderror
             </div>
           </div>
@@ -37,7 +37,7 @@
             <input class="register__input" type="email" name="email" class="" for="email" placeholder="例: test@example.com" value="{{ old('email') }}">
             <div class="form__error">
               @error('email')
-              {{ $message }}
+              <p class="form__error">{{ $message }}</p>
               @enderror
             </div>
           </div>
@@ -46,7 +46,7 @@
             <input class="register__input" type="password" name="password" class="" for="pass" placeholder="例: coachtech1106" value="{{ old('password') }}">
             <div class="form__error">
               @error('password')
-              {{ $message }}
+              <p class="form__error">{{ $message }}</p>
               @enderror
             </div>
           </div>
@@ -55,16 +55,6 @@
         @if (session('status'))
           <p>{{ session('status') }}</p>
         @endif
-
-        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
       </div>
     </section>
   </main>

@@ -27,10 +27,10 @@
           </div>
         </div>
         @error('last_name')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         @error('first_name')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <div class="contact__formItem">
           <label id="gender" class="contact__formItemLabel">性別<spna class="contact__formItemLabel--red">※</spna></label>
@@ -41,7 +41,7 @@
           </div>
         </div>
         @error('gender')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <div class="contact__formItem">
           <label id="email" class="contact__formItemLabel">メールアドレス<spna class="contact__formItemLabel--red">※</spna></label>
@@ -50,7 +50,7 @@
           </div>
         </div>
         @error('email')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <div class="contact__formItem">
           <label id="tel" class="contact__formItemLabel">電話番号<spna class="contact__formItemLabel--red">※</spna></label>
@@ -63,7 +63,7 @@
           </div>
         </div>
         @error('tel')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <div class="contact__formItem">
           <label id="address" class="contact__formItemLabel">住所<spna class="contact__formItemLabel--red">※</spna></label>
@@ -72,7 +72,7 @@
           </div>
         </div>
         @error('address')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <div class="contact__formItem">
           <label id="building" class="contact__formItemLabel">建物名</label>
@@ -92,7 +92,7 @@
           </div>
         </div>
         @error('category_id')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <div class="contact__formItem">
           <label id="content" class="contact__formItemLabel">お問い合わせ内容<spna class="contact__formItemLabel--red">※</spna></label>
@@ -101,7 +101,7 @@
           </div>
         </div>
         @error('detail')
-        <p class="form__error">{{ $message }}</p>
+        <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <input type="submit" class="contact__formItemBtnbg" value="確認画面">
       </form>

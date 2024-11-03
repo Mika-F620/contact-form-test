@@ -55,8 +55,14 @@ class ContactController extends Controller
     }
     public function register(RegisterRequest $request)
     {
-        $contact = $request->only(['name', 'email', 'password']);
-        return view('register', ['contact' => $contact]);
+        // バリデーションされたデータを使ってユーザーを作成
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')), // パスワードを暗号化
+        ]);
+
+        return redirect()->route('home')->with('status', '登録が完了しました。ログインしてください。');
     }
     public function login(LoginRequest $request)
     {
