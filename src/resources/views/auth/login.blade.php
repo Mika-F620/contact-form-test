@@ -15,11 +15,11 @@
     <h1 class="header__title">FashionablyLate</h1>
   </header>
   <main>
-  @if (session('status'))
+    @if (session('status'))
     <div class="alert alert-danger">
         {{ session('status') }}
     </div>
-@endif
+    @endif
     <section class="login">
       <div class="login__contents wrapper">
         <h2 class="sectionTitle">Login</h2>

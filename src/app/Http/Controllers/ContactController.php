@@ -12,7 +12,7 @@ use App\Http\Requests\LoginRequest;
 
 class ContactController extends Controller
 {
-    public function confirm(Request $request)
+    public function confirm(ContactRequest $request)
     {
         $contact = $request->only([
             'last_name', 'first_name', 'gender', 'email', 'tell', 
