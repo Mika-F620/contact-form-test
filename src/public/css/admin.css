@@ -243,6 +243,14 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+@media (max-width: 768px) {
+  .admin__modal {
+    overflow-y: auto;
+    height: 100vh;
+  }
+}
+
 .adminModal__contents {
   background-color: #fff;
   margin: 15% auto;
@@ -251,6 +259,13 @@
   width: 100%;
   max-width: 805px;
 }
+
+@media (max-width: 768px) {
+  .adminModal__contents {
+    padding: 29px;
+  }
+}
+
 .adminModal__close {
   color: #8b7969;
   text-align: center;
@@ -270,6 +285,20 @@
   margin: 79px 67px;
 }
 
+@media (max-width: 768px) {
+  .adminModal__table {
+    margin: 79px 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .admin__tableLine {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .adminModal__tableHeading {
   text-align: left;
   font-size: 2rem;
@@ -279,12 +308,25 @@
   padding-bottom: 35px;
 }
 
+@media (max-width: 768px) {
+  .adminModal__tableHeading {
+    width: 100%;
+    padding-bottom: 8px;
+  }
+}
+
 .adminModal__tableDetails {
   color: #8b7969;
   font-size: 2rem;
   font-weight: 400;
   width: 60%;
   padding-bottom: 35px;
+}
+
+@media (max-width: 768px) {
+  .adminModal__tableDetails {
+    width: 100%;
+  }
 }
 
 .adminModal__tableBtn {

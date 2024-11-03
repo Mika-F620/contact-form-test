@@ -73,14 +73,14 @@
       <div class="adminModal__contents">
         <span class="adminModal__close" onclick="closeModal()">&times;</span>
         <table class="adminModal__table">
-          <tr><th class="adminModal__tableHeading">お名前</th><td class="adminModal__tableDetails" id="modal-name"></td></tr>
-          <tr><th class="adminModal__tableHeading">性別</th><td class="adminModal__tableDetails" id="modal-gender"></td></tr>
-          <tr><th class="adminModal__tableHeading">メールアドレス</th><td class="adminModal__tableDetails" id="modal-email"></td></tr>
-          <tr><th class="adminModal__tableHeading">電話番号</th><td class="adminModal__tableDetails" id="modal-tell"></td></tr>
-          <tr><th class="adminModal__tableHeading">住所</th><td class="adminModal__tableDetails" id="modal-address"></td></tr>
-          <tr><th class="adminModal__tableHeading">建物名</th><td class="adminModal__tableDetails" id="modal-building"></td></tr>
-          <tr><th class="adminModal__tableHeading">お問い合わせの種類</th><td class="adminModal__tableDetails" id="modal-category"></td></tr>
-          <tr><th class="adminModal__tableHeading">お問い合わせ内容</th><td class="adminModal__tableDetails" id="modal-detail"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">お名前</th><td class="adminModal__tableDetails" id="modal-name"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">性別</th><td class="adminModal__tableDetails" id="modal-gender"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">メールアドレス</th><td class="adminModal__tableDetails" id="modal-email"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">電話番号</th><td class="adminModal__tableDetails" id="modal-tell"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">住所</th><td class="adminModal__tableDetails" id="modal-address"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">建物名</th><td class="adminModal__tableDetails" id="modal-building"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">お問い合わせの種類</th><td class="adminModal__tableDetails" id="modal-category"></td></tr>
+          <tr class="admin__tableLine"><th class="adminModal__tableHeading">お問い合わせ内容</th><td class="adminModal__tableDetails" id="modal-detail"></td></tr>
         </table>
         <button class="adminModal__tableBtn" type="button" onclick="deleteContact()">削除</button>
       </div>
