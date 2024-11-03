@@ -169,12 +169,21 @@ body {
 
 .admin__searchBtn {
   margin: 0;
+  font-size: min(1.5625vw, 2rem);
+  padding: 10px min(3.125vw, 40px);
+}
+
+@media (max-width: 930px) {
+  .admin__searchBtn {
+    font-size: 2rem;
+    padding: 10px 40px;
+  }
 }
 
 .admin__searchReset {
   border: 1px solid #d9c6b5;
-  font-size: 2rem;
-  padding: 10px 40px;
+  font-size: min(1.5625vw, 2rem);
+  padding: 10px min(3.125vw, 40px);
   width: fit-content;
   margin: 0;
   cursor: pointer;
@@ -183,8 +192,37 @@ body {
   color: #fff;
 }
 
+@media (max-width: 930px) {
+  .admin__searchReset {
+    font-size: 2rem;
+    padding: 10px 40px;
+  }
+}
+
 .admin__searchReset:hover {
   opacity: 0.8;
+}
+
+@media (max-width: 930px) {
+  .admin__searchForm {
+    overflow-x: auto; /* 横スクロールを有効に */
+    display: flex;
+    flex-wrap: nowrap; /* アイテムを1行に収める */
+    gap: 8px; /* アイテム間の余白 */
+  }
+  
+  /* 入力フィールドとボタンの幅調整 */
+  .admin__searchInput,
+  .admin__searchSelect,
+  .admin__searchBtn,
+  .admin__searchReset {
+    flex-shrink: 0; /* 各アイテムの縮小を防ぐ */
+    min-width: 150px; /* 各アイテムの最低幅 */
+  }
+  
+  .admin__searchDropdown {
+    min-width: 150px; /* ドロップダウンの最低幅 */
+  }
 }
 
 .flex.justify-between.flex-1 {
@@ -244,6 +282,18 @@ body {
   color: #fff; /* ホバーテキスト色 */
 }
 
+/* テーブルの横スクロールをラップするコンテナ */
+.admin__tableWrapper {
+  overflow-x: auto; /* 横スクロールを有効にする */
+}
+
+/* メディアクエリで850px以下の画面幅時に適用 */
+@media (max-width: 930px) {
+  .admin__table {
+    min-width: 850px; /* テーブルの最小幅を指定して横スクロールを可能にする */
+  }
+}
+
 .admin__tableHeading {
   background-color: #8b7969;
   color: #fff;
@@ -260,6 +310,7 @@ body {
   line-height: 1;
   padding: 24px 10px;
   border-bottom: 1px solid #e0dfde;
+  min-width: 100px;
 }
 
 .admin__tableDetails:first-of-type {
@@ -273,9 +324,11 @@ body {
   align-items: center;
   border-right: 1px solid #e0dfde;
   padding-right: 57px;
+  gap: 16px;
 }
 
 .admin__tableBtn {
+  min-width: 75px;
   color: #d9c6b5;
   font-size: 1.8rem;
   padding: 4px 15px;

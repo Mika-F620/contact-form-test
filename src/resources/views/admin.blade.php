@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>お問い合わせフォーム</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
 </head>
@@ -52,7 +55,7 @@
 <div class="admin__searchPagination">
     {{ $contacts->links() }}
 </div>
-
+  <div class="admin__tableWrapper">
     <!-- 検索フィルターやテーブル -->
     <table class="admin__table">
       <tr>
@@ -73,7 +76,7 @@
       </tr>
       @endforeach
     </table>
-
+  </div>
     <!-- モーダルウィンドウ -->
     <div id="contactModal" class="admin__modal">
       <div class="adminModal__contents">
