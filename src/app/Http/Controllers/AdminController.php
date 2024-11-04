@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
 use App\Models\Contact;
 use App\Models\Category;
@@ -95,49 +96,64 @@ class AdminController extends Controller
     
     public function export(Request $request)
     {
-        // 出力する検索条件付きのデータを取得
         $query = Contact::with('category');
-        
+
+        // 検索条件をクエリに適用
         if ($request->filled('query')) {
-            $search = $request->input('query');
-            $query->where(function($q) use ($search) {
-                $q->where('first_name', 'LIKE', "%{$search}%")
-                ->orWhere('last_name', 'LIKE', "%{$search}%")
-                ->orWhere('email', 'LIKE', "%{$search}%");
-            });
+            $search = trim($request->input('query'));
+
+            if (strpos($search, ' ') !== false) {
+                [$firstName, $lastName] = array_map('trim', explode(' ', $search, 2));
+                $query->where(function ($q) use ($firstName, $lastName) {
+                    $q->where([
+                        ['first_name', $firstName],
+                        ['last_name', $lastName]
+                    ])
+                    ->orWhere([
+                        ['first_name', $lastName],
+                        ['last_name', $firstName]
+                    ]);
+                });
+            } else {
+                $query->where(function ($q) use ($search) {
+                    $q->where('first_name', 'LIKE', "%{$search}%")
+                      ->orWhere('last_name', 'LIKE', "%{$search}%")
+                      ->orWhere('email', 'LIKE', "%{$search}%");
+                });
+            }
         }
+
         if ($request->filled('gender') && $request->input('gender') !== '全て') {
             $query->where('gender', $request->input('gender'));
         }
+
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->input('category_id'));
         }
+
         if ($request->filled('date')) {
             $query->whereDate('created_at', $request->input('date'));
         }
 
         $contacts = $query->get();
 
-        // CSVダウンロードのレスポンスを返す
-        $response = new StreamedResponse(function() use ($contacts) {
-            $handle = fopen('php://output', 'w');
-            fputcsv($handle, ['お名前', '性別', 'メールアドレス', 'お問い合わせの種類', 'お問い合わせ内容']);
-            
-            foreach ($contacts as $contact) {
-                fputcsv($handle, [
-                    $contact->last_name . ' ' . $contact->first_name,
-                    $contact->gender,
-                    $contact->email,
-                    $contact->category->content ?? 'なし',
-                    $contact->detail
-                ]);
-            }
-            fclose($handle);
-        });
+        // CSVヘッダー行とデータ行を準備
+        $csvData = "お名前,性別,メールアドレス,お問い合わせの種類\n";
+        foreach ($contacts as $contact) {
+            $csvData .= implode(',', [
+                $contact->last_name . ' ' . $contact->first_name,
+                $contact->gender,
+                $contact->email,
+                $contact->category->content ?? 'なし',
+            ]) . "\n";
+        }
 
-        $response->headers->set('Content-Type', 'text/csv');
-        $response->headers->set('Content-Disposition', 'attachment; filename="contacts.csv"');
-        return $response;
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="contacts_export.csv"',
+        ];
+
+        return Response::make($csvData, 200, $headers);
     }
 
 }
