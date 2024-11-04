@@ -4,12 +4,31 @@
 - Dockerビルド
   1.git clone git@github.com:Mika-F620/contact-form-test.git
   2.docker-compose up -d --build
-
+  
+- Laravel
+  1.docker-compose exec php bash
+  2.composer install
+  3..env.sampleファイルから.envを作成し、環境変数を変更
+  4.php artisan key:generate
+  5.php artisan migrate
+  6.php artisan db:seed
+  
 ## 使用技術(実行環境)
-- 例) Laravel 8.x(言語やフレームワーク、バージョンなどが記載されていると良い)
-
-## ER図
-< - - - 作成したER図の画像 - - - >
+- PHP 8.3.13
+- Laravel Framework 8.83.27
+- MySQL Ver 15.1
 
 ## URL
-- 例) 開発環境：http://localhost/
+- ポート番号は8084になり、データベースは8080になります。
+  - phpmyadmin（データベース）
+    http://localhost:8080/
+  - お問い合わせフォーム
+    http://localhost:8084/
+  - お問い合わせ確認画面
+    http://localhost:8084/confirm
+  - お問い合わせ完了画面
+    http://localhost:8084/thanks
+  - ログイン画面
+    http://localhost:8084/login
+  - 新規登録画面
+    http://localhost:8084/register
