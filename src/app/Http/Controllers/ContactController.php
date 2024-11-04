@@ -78,14 +78,14 @@ class ContactController extends Controller
         return view('index', compact('categories'));
     }
     public function show($id)
-{
-    try {
-        $contact = Contact::with('category')->findOrFail($id);
-        return response()->json($contact);  // JSON形式でレスポンスを返す
-    } catch (\Exception $e) {
-        // エラーログに出力
-        \Log::error('Error in ContactController@show: ' . $e->getMessage());
-        return response()->json(['error' => 'Contact not found'], 500);
+    {
+        try {
+            $contact = Contact::with('category')->findOrFail($id);
+            return response()->json($contact);  // JSON形式でレスポンスを返す
+        } catch (\Exception $e) {
+            // エラーログに出力
+            \Log::error('Error in ContactController@show: ' . $e->getMessage());
+            return response()->json(['error' => 'Contact not found'], 500);
+        }
     }
-}
 }
