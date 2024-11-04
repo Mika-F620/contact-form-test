@@ -117,6 +117,20 @@
   }
 }
 
+.admin__searchExport {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin__searchExportBtn {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #8b7969;
+  background: rgba(225, 219, 214, 0.6);
+  padding: 8px 20px;
+}
+
 .flex.justify-between.flex-1 {
   display: none;
 }

@@ -42,9 +42,12 @@
     <button class="admin__searchReset" type="button" onclick="window.location='{{ route('admin.dashboard') }}'">リセット</button>
 </form>
 
-<!-- ページネーションリンク -->
-<div class="admin__searchPagination">
-    {{ $contacts->links() }}
+<div class="admin__searchExport">
+  <button class="contact__formItemBtnbg admin__searchExportBtn" type="submit">エクスポート</button>
+  <!-- ページネーションリンク -->
+  <div class="admin__searchPagination">
+      {{ $contacts->links() }}
+  </div>
 </div>
   <div class="admin__tableWrapper">
     <!-- 検索フィルターやテーブル -->
