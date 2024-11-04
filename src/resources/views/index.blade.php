@@ -50,7 +50,13 @@
             <input type="tel" name="tell[]" class="contact__formItemInput" for="tel" placeholder="5678">
           </div>
         </div>
-        @error('tel')
+        @error('tell.0')
+        <p class="form__error form__errorRight">{{ $message }}</p>
+        @enderror
+        @error('tell.1')
+        <p class="form__error form__errorRight">{{ $message }}</p>
+        @enderror
+        @error('tell.2')
         <p class="form__error form__errorRight">{{ $message }}</p>
         @enderror
         <div class="contact__formItem">

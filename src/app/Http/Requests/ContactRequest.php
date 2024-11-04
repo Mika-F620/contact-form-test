@@ -28,7 +28,10 @@ class ContactRequest extends FormRequest
             'last_name' => ['required', 'string', 'max:255'],
             'gender' => ['required'],
             'email' => ['required', 'email', 'max:255'],
-            'tell' => ['required'],
+            // 各電話番号フィールドに4桁以下の数字のみ許可
+            'tell.0' => ['required', 'regex:/^\d{1,4}$/'],  // 最初の部分 例: 080
+            'tell.1' => ['required', 'regex:/^\d{1,4}$/'],  // 中間部分 例: 1234
+            'tell.2' => ['required', 'regex:/^\d{1,4}$/'],  // 最後の部分 例: 5678
             'address' => ['required', 'string', 'max:255'],
             'building' => ['string', 'max:255'],
             'category_id' => ['required', 'exists:categories,id'],
@@ -52,7 +55,13 @@ class ContactRequest extends FormRequest
             'email.email' => 'メールアドレスはメール形式で入力してください',
             'email.max' => 'メールアドレスを255文字以下で入力してください',
 
-            'tell.required' => '電話番号を入力してください',
+            'tell.0.required' => '電話番号を入力してください',
+            'tell.1.required' => '電話番号を入力してください',
+            'tell.2.required' => '電話番号を入力してください',
+
+            'tell.0.regex' => '電話番号は5桁までの数字で入力してください',
+            'tell.1.regex' => '電話番号は5桁までの数字で入力してください',
+            'tell.2.regex' => '電話番号は5桁までの数字で入力してください',
 
             'address.required' => '住所を入力してください',
             'address.string' => '住所を文字列で入力してください',
