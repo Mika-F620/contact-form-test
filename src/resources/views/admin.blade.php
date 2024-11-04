@@ -14,7 +14,7 @@
   <section class="admin wrapper">
     <h2 class="sectionTitle">Admin</h2>
 
-    <form class="admin__searchForm" action="{{ route('admin.search') }}" method="POST">
+    <form class="admin__searchForm" action="{{ route('admin.search') }}" method="GET">
     @csrf
     <input class="admin__searchInput" type="text" name="query" placeholder="名前またはメールアドレスで検索">
     <div class="admin__searchDropdown">

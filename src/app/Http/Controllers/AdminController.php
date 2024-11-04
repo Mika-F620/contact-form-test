@@ -22,14 +22,42 @@ class AdminController extends Controller
         $query = Contact::with('category');
 
         // 名前またはメールアドレスでの検索
-        if ($request->filled('query')) {
-            $search = $request->input('query');
+    if ($request->filled('query')) {
+        $search = trim($request->input('query'));
+
+        // 入力に空白がある場合は、first_name と last_name で分けて検索
+        if (strpos($search, ' ') !== false) {
+            [$firstName, $lastName] = array_map('trim', explode(' ', $search, 2));
+            $exactMatches = clone $query;
+            $exactMatches->where(function ($q) use ($firstName, $lastName) {
+                $q->where([
+                    ['first_name', $firstName],
+                    ['last_name', $lastName]
+                ])
+                ->orWhere([
+                    ['first_name', $lastName],
+                    ['last_name', $firstName]
+                ]);
+            });
+
+            if ($exactMatches->count() > 0) {
+                $query = $exactMatches;
+            } else {
+                $query->where(function ($q) use ($firstName, $lastName) {
+                    $q->where('first_name', 'LIKE', "%{$firstName}%")
+                      ->orWhere('last_name', 'LIKE', "%{$lastName}%")
+                      ->orWhere('email', 'LIKE', "%{$firstName}%{$lastName}%");
+                });
+            }
+        } else {
+            // 空白なしでの通常検索
             $query->where(function ($q) use ($search) {
                 $q->where('first_name', 'LIKE', "%{$search}%")
                   ->orWhere('last_name', 'LIKE', "%{$search}%")
                   ->orWhere('email', 'LIKE', "%{$search}%");
             });
         }
+    }
 
         // 性別の検索
         if ($request->filled('gender') && $request->input('gender') !== '全て') {
@@ -46,8 +74,8 @@ class AdminController extends Controller
             $query->whereDate('created_at', $request->input('date'));
         }
 
-        // ページネーションを検索結果に適用
-        $contacts = $query->paginate(7);
+        // ページネーションに検索条件を引き継ぎ
+        $contacts = $query->paginate(7)->appends($request->all());
         $categories = Category::all();
 
         return view('admin', compact('contacts', 'categories'));

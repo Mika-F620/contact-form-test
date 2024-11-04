@@ -17,7 +17,8 @@ Route::post('/confirm', [ContactController::class, 'confirm'])->name('confirm.po
 
 Route::post('/thanks', [ContactController::class, 'thanks'])->name('thanks');
 
-Route::post('/admin/search', [AdminController::class, 'search'])->name('admin.search');
+// 検索機能にGETとPOSTの両方を許可
+Route::match(['get', 'post'], '/admin/search', [AdminController::class, 'search'])->name('admin.search');
 // 認証ユーザー専用の管理ページ（ログイン後にのみアクセス可能）
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');

@@ -201,6 +201,10 @@
   overflow-x: auto; /* 横スクロールを有効にする */
 }
 
+.admin__table {
+  width: 100%;
+}
+
 /* メディアクエリで850px以下の画面幅時に適用 */
 @media (max-width: 930px) {
   .admin__table {
