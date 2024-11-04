@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\CustomAuthenticatedSessionController;
 
 // トップページ（アクセス自由）
 Route::get('/', [ContactController::class, 'index'])->name('home');
@@ -34,4 +35,4 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('l
 Route::post('/admin/export', [AdminController::class, 'export'])->name('admin.export');
 
 // 他のルートの設定の後に追加
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+Route::post('/logout', [CustomAuthenticatedSessionController::class, 'destroy'])->name('logout');

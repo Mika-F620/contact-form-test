@@ -6,7 +6,8 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-// use App\Http\Requests\LoginRequest;  // LoginRequestをインポート
+use App\Actions\Fortify\CustomLogoutResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;         // Requestをインポート
 use Illuminate\Support\Facades\RateLimiter;
@@ -19,6 +20,11 @@ use Illuminate\Support\Facades\Validator; // Validatorをインポート
 
 class FortifyServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        $this->app->singleton(LogoutResponse::class, CustomLogoutResponse::class);
+    }
+    
     public function boot()
     {
         Fortify::createUsersUsing(CreateNewUser::class);
