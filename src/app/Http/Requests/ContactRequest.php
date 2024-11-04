@@ -28,7 +28,7 @@ class ContactRequest extends FormRequest
             'last_name' => ['required', 'string', 'max:255'],
             'gender' => ['required'],
             'email' => ['required', 'email', 'max:255'],
-            'tell' => ['required', 'string', 'max:5', 'regex:/^[0-9]+$/'],
+            'tell' => ['required'],
             'address' => ['required', 'string', 'max:255'],
             'building' => ['string', 'max:255'],
             'category_id' => ['required', 'exists:categories,id'],
@@ -53,7 +53,6 @@ class ContactRequest extends FormRequest
             'email.max' => 'メールアドレスを255文字以下で入力してください',
 
             'tell.required' => '電話番号を入力してください',
-            'tell.regex' => '電話番号は5桁までの数字で入力してください',
 
             'address.required' => '住所を入力してください',
             'address.string' => '住所を文字列で入力してください',

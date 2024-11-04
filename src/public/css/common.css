@@ -42,6 +42,7 @@ body {
 
 @media screen and (max-width: 768px) {
   .header__loginLink {
+    top: 130px;
     right: 40px;
   }
 }
@@ -52,6 +53,7 @@ body {
   font-size: 2rem;
   padding: 4px 15px;
   transition: all .3s;
+  cursor: pointer;
 }
 
 .header__loginBtn:hover {
@@ -102,4 +104,11 @@ body {
 
 .form__errorRight {
   text-align: right;
+}
+
+.registerSuccess {
+  background: rgba(144, 238, 144, 0.6);
+  text-align: center;
+  padding: 20px 0;
+  font-family: "Inika";
 }

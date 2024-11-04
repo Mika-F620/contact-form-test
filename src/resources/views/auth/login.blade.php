@@ -2,9 +2,14 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endsection
+@section('btn')
+<div class="header__loginLink">
+  <button class="header__loginBtn" onclick="location.href='{{ route('register') }}'">register</button>
+</div>
+@endsection
 @section('content')
     @if (session('status'))
-    <div class="alert alert-danger">
+    <div class="registerSuccess">
         {{ session('status') }}
     </div>
     @endif

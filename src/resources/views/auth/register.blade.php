@@ -2,6 +2,11 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 @endsection
+@section('btn')
+<div class="header__loginLink">
+  <button class="header__loginBtn" onclick="location.href='{{ route('login') }}'">login</button>
+</div>
+@endsection
 @section('content')
     <section class="register">
       <div class="register__contents wrapper">
