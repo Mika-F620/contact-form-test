@@ -20,15 +20,15 @@
 
 ## URL
 - ポート番号は8084になり、データベースは8080になります。
-  - phpmyadmin（データベース）
+  - phpmyadmin（データベース）<br>
     http://localhost:8080/
-  - お問い合わせフォーム
+  - お問い合わせフォーム<br>
     http://localhost:8084/
-  - お問い合わせ確認画面
+  - お問い合わせ確認画面<br>
     http://localhost:8084/confirm
-  - お問い合わせ完了画面
+  - お問い合わせ完了画面<br>
     http://localhost:8084/thanks
-  - ログイン画面
+  - ログイン画面<br>
     http://localhost:8084/login
-  - 新規登録画面
+  - 新規登録画面<br>
     http://localhost:8084/register
