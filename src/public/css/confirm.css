@@ -90,3 +90,7 @@
 .confirm__fix:hover {
   opacity: 0.8;
 }
+
+.confirm__back {
+  cursor: pointer;
+}

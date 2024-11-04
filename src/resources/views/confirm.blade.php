@@ -11,7 +11,7 @@
           <tr class="confirm__tableLine">
             <th class="confirm__tableHeading">お名前</th>
             <td class="confirm__tableDetail">
-              {{ $contact['last_name'] }} {{ $contact['first_name'] }}
+              {{ $contact['last_name'] }}　{{ $contact['first_name'] }}
             </td>
           </tr>
           <tr class="confirm__tableLine">
@@ -45,7 +45,7 @@
         </table>
         <div class="confirm__button">
           <button class="contact__formItemBtnbg confirm__submit" type="submit">送信</button>
-          <a onclick="history.back();">修正</a>
+          <a class="confirm__back" onclick="history.back();">修正</a>
         </div>
       </form>
     </section>
