@@ -31,5 +31,7 @@ Route::post('/register', [UserController::class, 'store'])->name('register.store
 // POST /loginでの認証リクエスト
 Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login');
 
+Route::post('/admin/export', [AdminController::class, 'export'])->name('admin.export');
+
 // 他のルートの設定の後に追加
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

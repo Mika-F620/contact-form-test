@@ -123,6 +123,14 @@
   align-items: center;
 }
 
+@media (max-width: 480px) {
+  .admin__searchExport {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+}
+
 .admin__searchExportBtn {
   font-size: 1.8rem;
   margin: 0;

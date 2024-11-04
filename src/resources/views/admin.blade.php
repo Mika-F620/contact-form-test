@@ -43,7 +43,15 @@
 </form>
 
 <div class="admin__searchExport">
-  <button class="contact__formItemBtnbg admin__searchExportBtn" type="submit">エクスポート</button>
+  <!-- エクスポートボタン -->
+  <form action="{{ route('admin.export') }}" method="POST">
+      @csrf
+      <input type="hidden" name="query" value="{{ request('query') }}">
+      <input type="hidden" name="gender" value="{{ request('gender') }}">
+      <input type="hidden" name="category_id" value="{{ request('category_id') }}">
+      <input type="hidden" name="date" value="{{ request('date') }}">
+      <button class="contact__formItemBtnbg admin__searchExportBtn" type="submit">エクスポート</button>
+  </form>
   <!-- ページネーションリンク -->
   <div class="admin__searchPagination">
       {{ $contacts->links() }}
